@@ -1,0 +1,192 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+  .loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  text-align: center;
+}
+.modal-content, .modal-body, .model-dialog {
+  text-align: center;
+  padding-left: 2.5em;
+}
+
+.btn-info1 {
+  color: #3498db;
+  background-color: transparent;
+  border-color:#3498db;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 15%;
+}
+.btn-info1:hover { 
+  color: rgba(0,0,0,.5);
+  background: linear-gradient(to right, #99ccff 0%, #ffffff 100%);
+}
+
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<form method="POST" enctype="multipart/form-data" action="{{ url_for('pipeline')}}">
+  <div class="accordion" id="accordionExample">
+
+    <!-- collapseOne Section -->
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0" style="text-align:center">
+          <button class="btn btn-info1" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+            aria-controls="collapseOne">
+            STEP 1
+          </button>
+        </h5>
+      </div>
+      <!-- collapseOne Header -->
+      <!-- <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample"> -->
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <h5 class="card-title">Please Upload your (<span class="alert-light">Geogazard .png</span>) File</h5>
+
+          <span class="form-data alert-light">Select and Upload your file.Note that the file should be in .png
+            format.</span>
+          <input class="btn-link" type="file" name="png1">
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">Please Insert the parameters (<span class="alert-light">geohaz_xori and geohaz_yori</span>)</h5>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Coordinates</span>
+            </div>
+            {{ form.geohaz_xori(class='form-control',placeholder="geohaz_xori = 463580",value="463580") }}
+            {{ form.geohaz_yori(class='form-control',placeholder="geohaz_yori = 581498",value="581498") }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- collapseTwo Section -->
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0" style="text-align:center">
+          <button class="btn btn-info1" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseThree">
+            STEP 2
+          </button>
+        </h5>
+      </div>
+
+      <!-- collapseTwo Header -->
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <h5 class="card-title">Please Upload your (<span class="alert-light">Pipelines .png</span>) File</h5>
+
+          <span class="form-data alert-light">Select and Upload your file.Note that the file should be in .png
+            format.</span>
+          <input class="btn-link" type="file" name="png2">
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">Please Insert the parameters (<span class="alert-light">pipelines_xori and
+              pipelines_yori</span>)</h5>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Coordinates</span>
+            </div>
+            {{ form.pipelines_xori(class='form-control',placeholder="472466",value="472466") }}
+            {{ form.pipelines_yori(class='form-control',placeholder="597604",value="597604") }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- collapseThree Section -->
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0" style="text-align:center">
+          <button class="btn btn-info1" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+            aria-controls="collapseThree">
+            STEP 3
+          </button>
+        </h5>
+      </div>
+
+      <!-- collapseThree Header -->
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <h5 class="card-title">Please Insert the (<span class="alert-light">XY Start and End Coordinates</span>)
+            parameters</h5>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="x_strt">x_strt</label>
+              {{ form.x_strt(class='form-control',placeholder="470700",value="470700",id="x_strt") }}
+            </div>
+            <div class="form-group col-md-6">
+              <label for="x_end">x_end</label>
+              {{ form.x_end(class='form-control',placeholder="530330",value="530330",id="x_end") }}
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="y_strt">y_strt</label>
+              {{ form.y_strt(class='form-control',placeholder="576390",value="576390",id="y_strt") }}
+            </div>
+            <div class="form-group col-md-6">
+              <label for="y_end">y_end</label>
+              {{ form.y_end(class='form-control',placeholder="516930",value="516930",id="y_end") }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="card">
+      <button type="submit" value="Submit" class="btn btn-info" data-toggle="modal" data-target="#myModal">Proceed</button>
+    </div>
+
+  </div>
+</form>
+<div class="container-fluid">
+  <div class="modal fade bd-example-modal-sm" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content modal-backdrop">
+        <div class="modal-body">
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(function () {
+    $('#myModal').on('click', function (e) {
+      Custombox.open({
+        target: '#testmodal-1',
+        effect: 'fadein',
+        backdrop: 'static',
+        keyboard: false
+      });
+      e.preventDefault();
+    });
+  });
+</script>
+
+{% endblock %}
+
+{{something}}

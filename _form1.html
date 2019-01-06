@@ -1,0 +1,41 @@
+  {% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-4 justify-content-center">Sign In</h2>
+    <form method="POST" action="{{ url_for('form')}}">
+      {{ form.csrf_token }}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+        </div>
+        <!-- <input type="text" class="form-control" name="form.username.data"  placeholder="Parameter 1" aria-label="Parameter1" aria-describedby="basic-addon1"> -->
+        {{ form.username(class='form-control',placeholder="username") }}
+        {% for error in form.username.errors %}
+        <div class="container alert alert-danger">
+          <ul>
+            <li style="color:red">{{ error }}</li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password </span>
+        </div>
+        <!-- <input type="password" class="form-control" placeholder="Parameter 1" aria-label="Parameter1" aria-describedby="basic-addon1"> -->
+        {{ form.password(class='form-control',placeholder="password") }}
+        {% for error in form.password.errors %}
+        <div class="container alert alert-danger">
+          <ul>
+            <li style="color:red">{{ error }}</li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+{% endblock %}
