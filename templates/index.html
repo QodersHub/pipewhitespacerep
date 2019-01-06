@@ -1,0 +1,28 @@
+<!-- login page -->
+{% extends "layoutlogin.html" %}
+{% block content %}
+<style>
+  .addpadding {
+padding-bottom: 1em;
+}
+</style>
+<div class="mx-auto" style="width: 500px">
+  <div style="text-align:center">
+    <img src="/static/img/logo.png">
+    <h5 class="display-5 ">Welcome to the White Space module manager</h5>
+  </div>
+  <hr>
+  <h5 class="display-4 ">Log In</h5>
+  <form method="POST" action="{{ url_for('index')}}">
+    {{ form.csrf_token }}
+    <div class="addpadding">
+      {{ form.username(class='form-control',placeholder="username") }}
+    </div>
+    {{ form.password(class='form-control',placeholder="password",type="password") }}
+    <hr>
+    <input class="btn btn-info" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}
+
+<!-- login page -->
